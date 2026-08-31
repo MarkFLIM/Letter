@@ -36,7 +36,7 @@
       position: relative;
     }
 
-    /* Floating Flower Petal Container */
+    /* Floating Flower Container */
     #flower-container {
       position: fixed;
       top: 0;
@@ -98,18 +98,17 @@
       max-width: 460px;
     }
 
-    /* Envelope Presentation */
+    /* Envelope Container */
     .envelope-box {
       position: relative;
       width: 100%;
-      max-width: 380px;
-      height: 240px;
+      max-width: 360px;
+      height: 250px;
       background-color: var(--env-outer);
       border-radius: 0 0 16px 16px;
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.12);
       cursor: pointer;
-      transition: margin-top 0.6s ease, transform 0.3s ease;
-      margin-top: 60px;
+      transition: transform 0.3s ease;
     }
 
     .envelope-box:hover {
@@ -123,24 +122,24 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 190px solid transparent;
-      border-right: 190px solid transparent;
-      border-top: 130px solid var(--env-top);
+      border-left: 180px solid transparent;
+      border-right: 180px solid transparent;
+      border-top: 135px solid var(--env-top);
       transform-origin: top;
-      transition: transform 0.6s ease, z-index 0.2s ease;
+      transition: transform 0.6s ease;
       z-index: 4;
     }
 
-    /* Pocket Fronts */
+    /* Pockets */
     .pocket-left {
       position: absolute;
       bottom: 0;
       left: 0;
       width: 0;
       height: 0;
-      border-left: 190px solid var(--env-inner);
-      border-top: 120px solid transparent;
-      border-bottom: 120px solid var(--env-inner);
+      border-left: 180px solid var(--env-inner);
+      border-top: 125px solid transparent;
+      border-bottom: 125px solid var(--env-inner);
       border-radius: 0 0 0 16px;
       z-index: 3;
     }
@@ -151,9 +150,9 @@
       right: 0;
       width: 0;
       height: 0;
-      border-right: 190px solid var(--env-inner);
-      border-top: 120px solid transparent;
-      border-bottom: 120px solid var(--env-inner);
+      border-right: 180px solid var(--env-inner);
+      border-top: 125px solid transparent;
+      border-bottom: 125px solid var(--env-inner);
       border-radius: 0 0 16px 0;
       z-index: 3;
     }
@@ -164,17 +163,17 @@
       left: 0;
       width: 0;
       height: 0;
-      border-left: 190px solid transparent;
-      border-right: 190px solid transparent;
-      border-bottom: 130px solid var(--env-outer);
+      border-left: 180px solid transparent;
+      border-right: 180px solid transparent;
+      border-bottom: 135px solid var(--env-outer);
       border-radius: 0 0 16px 16px;
       z-index: 3;
     }
 
-    /* Wax Seal / Stamp Button */
+    /* Wax Seal */
     .wax-seal {
       position: absolute;
-      top: 110px;
+      top: 120px;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 52px;
@@ -188,7 +187,7 @@
       font-size: 1.3rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
       z-index: 5;
-      transition: transform 0.3s ease, opacity 0.4s ease;
+      transition: opacity 0.4s ease;
     }
 
     .instruction {
@@ -199,23 +198,33 @@
       transition: opacity 0.4s ease;
     }
 
-    /* The Letter Inside */
-    .letter {
-      position: absolute;
-      top: 10px;
-      left: 15px;
-      right: 15px;
+    /* The Letter Inside (Hidden by default) */
+    .letter-card {
+      display: none;
+      width: 100%;
+      max-width: 440px;
       background: var(--paper);
-      border-radius: 12px;
-      padding: 28px 22px;
-      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+      border-radius: 20px;
+      padding: 30px 22px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
       border: 1px solid var(--border);
-      z-index: 2;
-      transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), z-index 0.2s ease;
+      animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+      margin-top: 20px;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
     }
 
     .letter-title {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 14px;
       color: var(--text-main);
@@ -225,24 +234,23 @@
     }
 
     .letter-body {
-      font-size: 0.92rem;
-      line-height: 1.65;
+      font-size: 0.93rem;
+      line-height: 1.7;
       color: var(--text-main);
       white-space: pre-line;
-      margin-bottom: 18px;
+      margin-bottom: 20px;
     }
 
     .response-buttons {
       display: flex;
-      gap: 10px;
-      margin-top: 16px;
+      gap: 12px;
     }
 
     .resp-btn {
       flex: 1;
-      padding: 10px 12px;
-      border-radius: 10px;
-      font-size: 0.85rem;
+      padding: 12px;
+      border-radius: 12px;
+      font-size: 0.88rem;
       font-weight: 600;
       border: 1px solid var(--border);
       cursor: pointer;
@@ -260,11 +268,7 @@
       transform: translateY(-2px);
     }
 
-    /* Open State */
-    .envelope-box.opened {
-      margin-top: 360px;
-    }
-
+    /* When Opened */
     .envelope-box.opened .flap {
       transform: rotateX(180deg);
       z-index: 1;
@@ -275,14 +279,8 @@
       pointer-events: none;
     }
 
-    .envelope-box.opened .letter {
-      transform: translateY(-340px);
-      z-index: 10;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
-    }
-
     .envelope-box.opened ~ .instruction {
-      opacity: 0;
+      display: none;
     }
   </style>
 </head>
@@ -290,22 +288,32 @@
 
   <div id="flower-container"></div>
 
+  <!-- Audio Element -->
   <audio id="bg-music" loop>
     <source src="idea22.mp3" type="audio/mpeg" />
   </audio>
 
+  <!-- Floating Audio Button -->
   <button class="music-btn" id="music-toggle" onclick="toggleMusic()">
     <span id="music-icon">🎵</span> <span id="music-text">Play Music</span>
   </button>
 
   <div class="wrapper">
+    <!-- Envelope -->
     <div class="envelope-box" id="envelope" onclick="openEnvelope(event)">
       <div class="flap"></div>
       <div class="wax-seal">💌</div>
+      <div class="pocket-left"></div>
+      <div class="pocket-right"></div>
+      <div class="pocket-bottom"></div>
+    </div>
 
-      <div class="letter">
-        <div class="letter-title">A Formal Invitation ☕</div>
-        <div class="letter-body">
+    <div class="instruction" id="instruction-text">Tap the envelope to open</div>
+
+    <!-- Letter Content (Revealed on Open) -->
+    <div class="letter-card" id="letter-content">
+      <div class="letter-title">A Formal Invitation ☕</div>
+      <div class="letter-body">
 Hi love,
 
 I know school and routines have been heavy lately, and the last thing I want to do is add any pressure to your week. 
@@ -315,24 +323,16 @@ It’s my day off this Friday and Saturday. I would love to take you out on a qu
 If you have requirements or studying to do, you can bring your notes and study quietly while we’re together. No expectations to entertain me or be in high energy—just parallel presence and good comfort food. 
 
 Let me know if you’d like to, love!
-        </div>
-
-        <div class="response-buttons">
-          <button class="resp-btn yes" onclick="popFlowersNear(event); alert('Yay! Send me a message so we can pick our spot ❤️')">I'd love that ✨</button>
-          <button class="resp-btn" onclick="popFlowersNear(event); alert('Completely understand love! Rest well and zero worries 🌻')">Need to rest 🌙</button>
-        </div>
       </div>
 
-      <div class="pocket-left"></div>
-      <div class="pocket-right"></div>
-      <div class="pocket-bottom"></div>
+      <div class="response-buttons">
+        <button class="resp-btn yes" onclick="popFlowersNear(event); alert('Yay! Send me a message so we can pick our spot ❤️')">I'd love that ✨</button>
+        <button class="resp-btn" onclick="popFlowersNear(event); alert('Completely understand love! Rest well and zero worries 🌻')">Need to rest 🌙</button>
+      </div>
     </div>
-
-    <div class="instruction" id="instruction-text">Tap the envelope to open</div>
   </div>
 
   <script>
-    // Sunflowers, Water Lilies, floral blossoms, and sparkles
     const flowers = ['🌻', '🪷', '🌸', '🌹', '✨'];
     const container = document.getElementById('flower-container');
     const audio = document.getElementById('bg-music');
@@ -379,7 +379,11 @@ Let me know if you’d like to, love!
         startAudio();
 
         const rect = document.getElementById('envelope').getBoundingClientRect();
-        popFlowers(rect.left + rect.width / 2, rect.top + 50);
+        popFlowers(rect.left + rect.width / 2, rect.top + 60);
+
+        setTimeout(() => {
+          document.getElementById('letter-content').style.display = 'block';
+        }, 300);
       }
     }
 
